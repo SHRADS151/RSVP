@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event RSVP</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for a cleaner look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-4">
+        <h1 id="formTitle" class="text-3xl font-semibold text-center mb-6 text-gray-800"></h1>
+        <p id="formMessage" class="text-center text-gray-600 mb-8"></p>
+        
+        <!-- Form for RSVP data -->
+        <form id="rsvpForm" class="space-y-6">
+            <!-- The "Event Name" field has been removed as per your request -->
+            <div>
+                <label for="adult1" class="block text-sm font-medium text-gray-700">Adult 1 Name</label>
+                <input type="text" id="adult1" name="adult1" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="adult2" class="block text-sm font-medium text-gray-700">Adult 2 Name (if any)</label>
+                <input type="text" id="adult2" name="adult2" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="childName" class="block text-sm font-medium text-gray-700">Child's Name</label>
+                <input type="text" id="childName" name="childName" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="childAge" class="block text-sm font-medium text-gray-700">Child's Age</label>
+                <input type="text" id="childAge" name="childAge" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="caregiver" class="block text-sm font-medium text-gray-700">Caregiver Name</label>
+                <input type="text" id="caregiver" name="caregiver" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            
+            <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Confirm RSVP
+            </button>
+        </form>
+
+        <!-- Message container for success/error messages -->
+        <div id="messageContainer" class="mt-6 hidden">
+            <div id="messageText" class="p-4 rounded-lg text-sm text-center"></div>
+        </div>
+    </div>
+
+    <script>
+        // Use this object to easily customize the form for different events
+        const eventConfig = {
+            title: "Prithvi's Birthday Event",
+            message: "Please share your details below to confirm your attendance. We can't wait to see you!"
+        };
+
+        // Get the form and message elements
+        const form = document.getElementById('rsvpForm');
+        const messageContainer = document.getElementById('messageContainer');
+        const messageText = document.getElementById('messageText');
+        const formTitle = document.getElementById('formTitle');
+        const formMessage = document.getElementById('formMessage');
+
+        // Set the dynamic content
+        formTitle.textContent = eventConfig.title;
+        formMessage.textContent = eventConfig.message;
+
+        // IMPORTANT: Replace this with your Google Apps Script URL after you've deployed it.
+        const appsScriptURL = 'drive.google.com/drive/folders/1dh0IntTvj4Q8h6HR8NwN_Z1X_5H6o-r7';
+
+        form.addEventListener('submit', async (e) => {
+            // Prevent the default form submission
+            e.preventDefault();
+
+            // Clear previous messages
+            messageContainer.classList.add('hidden');
+            messageText.textContent = '';
+
+            // Get form data
+            const formData = new FormData(form);
+            const data = {};
+            for (const [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+
+            try {
+                // Send data to the Google Apps Script web app
+                const response = await fetch(appsScriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Required for Google Apps Script to work with a web form
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                // Display success message
+                messageContainer.classList.remove('hidden');
+                messageText.textContent = 'Thank you for your RSVP! Your details have been submitted.';
+                messageText.classList.add('bg-green-100', 'text-green-800');
+
+                // Reset the form
+                form.reset();
+
+            } catch (error) {
+                // Display error message
+                messageContainer.classList.remove('hidden');
+                messageText.textContent = 'Oops! Something went wrong. Please try again.';
+                messageText.classList.add('bg-red-100', 'text-red-800');
+                console.error('Submission error:', error);
+            }
+        });
+    </script>
+</body>
