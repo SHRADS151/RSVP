@@ -27,16 +27,12 @@
         <!-- Form for RSVP data -->
         <form id="rsvpForm" class="space-y-6">
             <div>
-                <label for="adult1" class="block text-sm font-medium text-gray-700">Primary Guest Name</label>
-                <input type="text" id="adult1" name="adult1" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                <label for="guest1Name" class="block text-sm font-medium text-gray-700">Guest Full Name 1</label>
+                <input type="text" id="guest1Name" name="guest1Name" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
             </div>
             <div>
-                <label for="mobileNumber" class="block text-sm font-medium text-gray-700">Mobile Number</label>
-                <input type="tel" id="mobileNumber" name="mobileNumber" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-            </div>
-            <div>
-                <label for="adult2" class="block text-sm font-medium text-gray-700">Secondary Guest Name (if applicable)</label>
-                <input type="text" id="adult2" name="adult2" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                <label for="guest2Name" class="block text-sm font-medium text-gray-700">Guest Full Name 2 (if accompanying):</label>
+                <input type="text" id="guest2Name" name="guest2Name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
             </div>
             <div>
                 <label for="child1Name" class="block text-sm font-medium text-gray-700">Child's Name</label>
@@ -47,15 +43,15 @@
                 <input type="text" id="child1Age" name="child1Age" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
             </div>
             <div>
-                <label for="child2Name" class="block text-sm font-medium text-gray-700">Second Child's Name (if applicable)</label>
+                <label for="child2Name" class="block text-sm font-medium text-gray-700">If you are bringing a second child, please provide their name:</label>
                 <input type="text" id="child2Name" name="child2Name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
             </div>
             <div>
-                <label for="child2Age" class="block text-sm font-medium text-gray-700">Second Child's Age (if applicable)</label>
+                <label for="child2Age" class="block text-sm font-medium text-gray-700">If you are bringing a second child, please provide their age:</label>
                 <input type="text" id="child2Age" name="child2Age" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
             </div>
             <div>
-                <label for="caregiver" class="block text-sm font-medium text-gray-700">Caregiver Name (if applicable)</label>
+                <label for="caregiver" class="block text-sm font-medium text-gray-700">Caregiver Name (if you are bringing one):</label>
                 <input type="text" id="caregiver" name="caregiver" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
             </div>
             <div>
@@ -93,7 +89,7 @@
         formMessage.textContent = eventConfig.message;
 
         // IMPORTANT: Replace this with your Google Apps Script URL after you've deployed it.
-        const appsScriptURL = 'https://script.google.com/macros/s/AKfycbyRaoMCmrFl0m5rPo9ENotn5ODTeCA_-i_lXcVJUUFkQDb38FTWTWVWZm757angEgyN/exec';
+        const appsScriptURL = 'https://script.google.com/macros/s/AKfycbxoFDTT8gPnNAqAxBAvZRaCu_jatm8-qBWLeOJRacE7KO17dAvlmHRrPZwtWSEV4NVs/exec';
 
         form.addEventListener('submit', async (e) => {
             // Prevent the default form submission
@@ -140,4 +136,3 @@
     </script>
 </body>
 </html>
-
