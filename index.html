@@ -1,31 +1,114 @@
-<script>
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxMeAxRVG7oEVwGlRaPDDrw9L6R1pIhfE0dZUczDH5_R_J1gnhoANmKsYSxWftNSYo0/exec"; // paste your deployed Apps Script Web App URL
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RSVP Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin: 12px 0 6px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
 
-document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+  <h1>RSVP Form</h1>
 
-  const form = e.target;
-  const payload = {
-    guest1Name: form.guest1Name.value,
-    guest2Name: form.guest2Name.value,
-    child1Name: form.child1Name.value,
-    child1Age: form.child1Age.value,
-    child2Name: form.child2Name.value,
-    child2Age: form.child2Age.value,
-    caregiver: form.caregiver.value,
-    comments: form.comments.value
-  };
+  <form id="rsvpForm">
+    <label for="guest1Name">Guest 1 Name</label>
+    <input type="text" name="guest1Name" id="guest1Name" required>
 
-  fetch(WEB_APP_URL, {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(payload)
-  }).then(() => {
-    alert("Thanks! Your RSVP was sent ✅");
-    form.reset();
-  }).catch(() => {
-    alert("Something went wrong. Please try again.");
-  });
-});
-</script>
+    <label for="guest2Name">Guest 2 Name</label>
+    <input type="text" name="guest2Name" id="guest2Name">
 
+    <label for="child1Name">Child 1 Name</label>
+    <input type="text" name="child1Name" id="child1Name">
+
+    <label for="child1Age">Child 1 Age</label>
+    <input type="number" name="child1Age" id="child1Age">
+
+    <label for="child2Name">Child 2 Name</label>
+    <input type="text" name="child2Name" id="child2Name">
+
+    <label for="child2Age">Child 2 Age</label>
+    <input type="number" name="child2Age" id="child2Age">
+
+    <label for="caregiver">Caregiver Name</label>
+    <input type="text" name="caregiver" id="caregiver">
+
+    <label for="comments">Comments</label>
+    <textarea name="comments" id="comments" rows="4"></textarea>
+
+    <button type="submit">Submit RSVP</button>
+  </form>
+
+  <script>
+    // ⚠️ Replace this with your deployed Apps Script Web App URL
+    const WEB_APP_URL = "https://script.google.com/macros/s/XXXXXXXXXXXXXXXX/exec";
+
+    document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const payload = {
+        guest1Name: form.guest1Name.value,
+        guest2Name: form.guest2Name.value,
+        child1Name: form.child1Name.value,
+        child1Age: form.child1Age.value,
+        child2Name: form.child2Name.value,
+        child2Age: form.child2Age.value,
+        caregiver: form.caregiver.value,
+        comments: form.comments.value
+      };
+
+      fetch(WEB_APP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(payload)
+      }).then(() => {
+        alert("✅ Thanks! Your RSVP has been submitted.");
+        form.reset();
+      }).catch(() => {
+        alert("❌ Something went wrong. Please try again.");
+      });
+    });
+  </script>
+
+</body>
+</html>
