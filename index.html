@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RSVP Form</title>
+  <title>Prithvi’s Birthday Celebration RSVP</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,9 +11,18 @@
     }
     h1 {
       text-align: center;
+      color: #e67e22;
+      margin-bottom: 0.2em;
+    }
+    p.intro {
+      text-align: center;
+      font-size: 1.2em;
+      color: #555;
+      margin-top: 0;
+      margin-bottom: 20px;
     }
     form {
-      max-width: 500px;
+      max-width: 550px;
       margin: 0 auto;
       background: #fff;
       padding: 20px;
@@ -23,6 +32,7 @@
     label {
       display: block;
       margin: 12px 0 6px;
+      font-weight: bold;
     }
     input, textarea {
       width: 100%;
@@ -33,8 +43,8 @@
     button {
       margin-top: 15px;
       width: 100%;
-      padding: 10px;
-      background: #28a745;
+      padding: 12px;
+      background: #e67e22;
       color: #fff;
       border: none;
       border-radius: 6px;
@@ -42,37 +52,42 @@
       cursor: pointer;
     }
     button:hover {
-      background: #218838;
+      background: #d35400;
     }
   </style>
 </head>
 <body>
 
-  <h1>RSVP Form</h1>
+  <h1>Prithvi's Birthday Celebration! 🎉</h1>
+  <p class="intro">
+    We are so excited to celebrate Prithvi's birthday and would be thrilled if you could join us.<br>
+    Please fill out the form below to confirm your attendance.<br>
+    We can't wait to celebrate this special day with you! ✨
+  </p>
 
   <form id="rsvpForm">
-    <label for="guest1Name">Guest 1 Name</label>
+    <label for="guest1Name">Guest Full Name 1</label>
     <input type="text" name="guest1Name" id="guest1Name" required>
 
-    <label for="guest2Name">Guest 2 Name</label>
+    <label for="guest2Name">Guest Full Name 2 (if accompanying)</label>
     <input type="text" name="guest2Name" id="guest2Name">
 
-    <label for="child1Name">Child 1 Name</label>
+    <label for="child1Name">Child's Name</label>
     <input type="text" name="child1Name" id="child1Name">
 
-    <label for="child1Age">Child 1 Age</label>
+    <label for="child1Age">Child's Age</label>
     <input type="number" name="child1Age" id="child1Age">
 
-    <label for="child2Name">Child 2 Name</label>
+    <label for="child2Name">If you are bringing a second child, please provide their name</label>
     <input type="text" name="child2Name" id="child2Name">
 
-    <label for="child2Age">Child 2 Age</label>
+    <label for="child2Age">If you are bringing a second child, please provide their age</label>
     <input type="number" name="child2Age" id="child2Age">
 
-    <label for="caregiver">Caregiver Name</label>
+    <label for="caregiver">Caregiver Name (if you are bringing one)</label>
     <input type="text" name="caregiver" id="caregiver">
 
-    <label for="comments">Comments</label>
+    <label for="comments">Additional Comments</label>
     <textarea name="comments" id="comments" rows="4"></textarea>
 
     <button type="submit">Submit RSVP</button>
@@ -112,4 +127,3 @@
 
 </body>
 </html>
-
